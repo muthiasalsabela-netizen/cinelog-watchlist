@@ -33,7 +33,7 @@
 
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
             <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm sticky top-6">
-                <h2 class="text-lg font-bold text-slate-900 mb-5">New Film</h2>
+                <h2 class="text-lg font-bold text-slate-900 mb-5">Tambah Film Baru</h2>
                 <form action="{{ route('movies.store') }}" method="POST" class="space-y-4">
                     @csrf
                     <div>
