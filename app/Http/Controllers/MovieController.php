@@ -9,7 +9,6 @@ class MovieController extends Controller
 {
     public function index(Request $request)
     {
-        // Ambil semua data film dari session (jika kosong, default array kosong)
         $movies = session()->get('movies', []);
 
         // Filter berdasarkan status tontonan jika ada request filter
@@ -29,27 +28,27 @@ class MovieController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'required|string|max:255',
-            'genre' => 'required|string',
-            'release_year' => 'required|integer|min:1900|max:' . date('Y'),
+            'title'        => 'required|string|max:255',
+            'genre'        => 'required|string',
+            'release_year' => 'required|integer|min:1800',
+            'country'      => 'nullable|string|max:100',
         ]);
 
         $movies = session()->get('movies', []);
 
-        // Buat data film baru dengan ID unik menggunakan string acak
         $newMovie = [
-            'id' => Str::random(10),
-            'title' => $request->title,
-            'genre' => $request->genre,
+            'id'           => Str::random(10),
+            'title'        => $request->title,
+            'genre'        => $request->genre,
             'release_year' => $request->release_year,
-            'status' => 'Belum Ditonton',
-            'rating' => null,
-            'review' => null
+            'country'      => $request->country ?? '-',
+            'status'       => 'Belum Ditonton', // Default status awal saat film dibuat
+            'rating'       => null,
+            'review'       => null
         ];
 
-        // Masukkan ke dalam array session
         $movies[] = $newMovie;
-        session()->put('movies', $movies);
+        session()->put('movies', array_values($movies));
 
         return redirect()->route('movies.index')->with('success', 'Film berhasil ditambahkan ke list (Session)!');
     }
@@ -64,10 +63,9 @@ class MovieController extends Controller
 
         $movies = session()->get('movies', []);
 
-        // Cari film berdasarkan ID dan perbarui datanya
         foreach ($movies as &$movie) {
             if ($movie['id'] === $id) {
-                $movie['status'] = $request->status;
+                $movie['status'] = $request->status; // Mengubah status menjadi 'Sudah Ditonton'
                 $movie['rating'] = $request->rating;
                 $movie['review'] = $request->review;
                 break;
@@ -76,14 +74,13 @@ class MovieController extends Controller
 
         session()->put('movies', $movies);
 
-        return redirect()->route('movies.index')->with('success', 'Status film berhasil diperbarui!');
+        return redirect()->route('movies.index')->with('success', 'Status tontonan berhasil diperbarui!');
     }
 
     public function destroy($id)
     {
         $movies = session()->get('movies', []);
 
-        // Filter array untuk menghapus film yang ID-nya cocok
         $movies = array_filter($movies, function($movie) use ($id) {
             return $movie['id'] !== $id;
         });
