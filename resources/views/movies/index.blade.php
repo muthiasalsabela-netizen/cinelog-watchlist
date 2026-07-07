@@ -68,7 +68,7 @@
                             <label class="block text-xs font-bold uppercase tracking-wider text-emerald-800/70 mb-1.5">Genre</label>
                             <select name="genre" required class="w-full px-4 py-2.5 rounded-xl bg-emerald-50/50 border border-emerald-200 text-emerald-950 text-sm focus:outline-none focus:border-emerald-600 focus:ring-2 focus:ring-emerald-600/10 transition-all">
                                 <option value="Action">Action</option>
-                                <option value="Fantasy">Fantasy</option>
+                                <option value="Sci-Fi">Sci-Fi</option>
                                 <option value="Drama">Drama</option>
                                 <option value="Horror">Horror</option>
                                 <option value="Comedy">Comedy</option>
