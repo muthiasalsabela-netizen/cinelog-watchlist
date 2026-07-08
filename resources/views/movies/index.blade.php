@@ -73,7 +73,7 @@
                                 <option value="Horror">Horror</option>
                                 <option value="Comedy">Comedy</option>
                                 <option value="Romance">Romance</option>
-                                <option value="Thriller">Thriller</option>
+                                <option value="Sports">Sports</option>
                             </select>
                         </div>
                         <div>
