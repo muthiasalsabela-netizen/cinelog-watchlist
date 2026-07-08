@@ -53,7 +53,7 @@
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
             <div class="bg-white border border-emerald-100 rounded-2xl p-6 shadow-sm sticky top-6 transition-all duration-300 hover:shadow-md">
                 <h2 class="text-lg font-bold text-emerald-900 mb-5 flex items-center gap-2">
-                    <span class="p-1 bg-emerald-50 rounded-lg text-emerald-700 text-sm">➕</span> Menambahkan Film Baru
+                    <span class="p-1 bg-emerald-50 rounded-lg text-emerald-700 text-sm">➕</span> Tambah Film Baru
                 </h2>
                 
                 <form action="{{ route('movies.store') }}" method="POST" class="space-y-4">
